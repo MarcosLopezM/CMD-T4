@@ -1,0 +1,38 @@
+\documentclass[./../main.tex]{subfiles}
+\graphicspath{{img/}}
+
+\begin{document}
+    \problempts{15}
+    \section{\hspace{0.33em}This is a Problem Worth 15 Points}
+
+    Dibuja un esquema del desdoblamiento total de los niveles de energía de los estados \(n = 2\) y \(n = 3\) del átomo de deuterio debido al efecto de la estructra fina, del efecto Lamb y de la estructura hiperfina. La Figura 1 muestra el esquema correspondiente para el estado \(n = 1\). El spin nuclear del deuterio es \(I = 1\).
+
+    \begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.8\textwidth, height=0.25\textwidth]{example-image-a}
+    \caption{Esquema del desdoblamiento de energía del nivel \(n = 1\) del átomo de deuterio. El esquema no está a escala.}
+    \label{fig:deuterium-level-splittling}
+    \end{figure}
+
+    \textbf{Información útil}:
+
+    \begin{itemize}[label={--}]
+    \item Primero, nota que el problema te pide un \textbf{esquema}, es decir, no es necesario que calcules las diferencias de energía exactas de cada nivel. Lo importante es que muestres de manera cualitativa, pero completa, los desdoblamientos finos e hiperfinos del deuterio.
+    \item Los niveles de energía de Bohr\footnote{Bohr era genial} son:
+
+    \begin{equation*}
+        E_{n} = -\dfrac{1}{2}\mu c^{2}\left(\dfrac{Z\alpha}{n}\right)^{2}.
+    \end{equation*}
+    \item  La correción a esta energía debida a la estructura fina está dada por:
+
+    \begin{equation*}
+        \adif{E_{hf}} = \dfrac{C}{2}[F(F + 1) - I(I + 1) - j(j + 1)],
+    \end{equation*}
+
+    en donde
+
+    \begin{equation*}
+        C = \dfrac{\mu_{0}}{4\pi}4g_{I}\mu_{B}\mu_{N}\dfrac{1}{j(j + 1)(2\ell + 1)}\left(\dfrac{Z}{a_{\mu}n}\right)^{3}.
+    \end{equation*}
+    \end{itemize}
+\end{document}
