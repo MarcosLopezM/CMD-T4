@@ -4,7 +4,7 @@
 %%                                                    %%
 %% ================================================== %%
 %%                                                    %%
-%% Version:     1.0 (2024/01/19)                      %%
+%% Version:     1.1 (2024/01/20)                      %%
 %% Author:      Marcos López Merino                   %%
 %% License:     MIT LICENSE                           %%
 %% GitHub Repo: https://tvj.one/ml-tex                %%
@@ -13,7 +13,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{fc-hw-template}[2024/01/19 Facultad de Ciencias Assignment Template]
+\ProvidesClass{fc-hw-template}[2024/01/20 Facultad de Ciencias Assignment Template]
 
 %% Class and Options
 \def\@@ptsize{10pt} % Default font size
@@ -32,14 +32,23 @@
 \newcommand{\firstfooteradditionalheight}{2em} % additional height for footer on the first page
 \hfuzz=.5em % disable false positive of overfull \hbox
 
+%% Language Settings
+\RequirePackage{polyglossia}
+\setdefaultlanguage{spanish}
+\setotherlanguage{english}
+\gappto\captionsspanish{\def\tablename{Tabla}}
+\RequirePackage[es]{datetime2}
+
 %% Document Propertities
 \global\let\@assignno\@empty
+\global\let\@group\@empty
 \global\let\@semester\@empty
 \global\let\@instructor\@empty
 \global\let\@duedate\@empty
 \global\let\@author\@empty
 \global\let\@subject\@empty
 \newcommand{\assignno}[1]{\gdef\@assignno{#1}} % Assignment Number
+\newcommand{\group}[1]{\gdef\@group{#1}} % Group
 \newcommand{\semester}[1]{\gdef\@semester{#1}} % Semester
 \newcommand{\instructor}[1]{\gdef\@instructor{#1}} % Instructor
 \newcommand{\duedate}[1]{\gdef\@duedate{#1}} % Due Date of the Assignment
@@ -59,12 +68,6 @@
 
 %% List Settings
 \RequirePackage[inline]{enumitem}
-
-%% Language Settings
-\RequirePackage{polyglossia}
-\setdefaultlanguage{spanish}
-\setotherlanguage{english}
-\gappto\captionsspanish{\def\tablename{Tabla}}
 
 %% TikZ Rule
 \RequirePackage{tikz}
@@ -223,6 +226,7 @@
 %% Title Settings
 \RequirePackage{afterpage}
 \newcommand{\pdftitleadditionalname}{Solution}
+\newcommand{\setduedate}[1]{\DTMDate{#1}}
 \makeatletter         
 \renewcommand\maketitle{
     \thispagestyle{firstpage}
@@ -246,13 +250,25 @@
         {
             \normalsize
             \fontfamily{LinuxBiolinumT-OsF}\selectfont
-            \textcolor{BrickRed}{\@semester}
+            \textcolor{BrickRed}{Grupo~\@group~-- \@semester}
             \vspace{2mm}
         }
         \LARGE\@title~{\fontfamily{bch}\selectfont\@assignno}
     \end{minipage}
     \\[.3em]
     \color{customBlue} \hrule width \hsize height 2pt \kern 1mm \hrule width \hsize
+    % Due date
+    \ifx\@duedate\@empty
+        \begin{center}
+            % \vspace{4mm}
+            \textbf{\normalsize Entrega:~\DTMtoday}
+        \end{center}
+    \else
+        \begin{center}
+            \textbf{\normalsize Entrega:~\setduedate{\@duedate}}
+        \end{center}
+    \fi
+
 
     \fontfamily{cmr}\selectfont % Computer Modern
 
