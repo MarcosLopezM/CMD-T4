@@ -1,19 +1,30 @@
 \documentclass[twoside]{fc-hw-template}
 
 
-\title{Assignment}
+\title{Tarea}
 \author{Marcos López Merino}
-\studentID{61520522}
 \instructor{TeX - LaTeX Stack Exchange}
 \date{\today}
-\duedate{20:00 March 21, 2022}
+\duedate{March 21, 2022}
 \assignno{1}
 \semester{Grupo 8287, Sem. 2024-2}
 \subject{Subject}
+
+% Custom bookmark 
+\makeatletter
+\let\oldHy@writebookmark\Hy@writebookmark
+\renewcommand{\Hy@writebookmark}[2]{%
+    \oldHy@writebookmark{#1}{Problema #2}%
+}
+\makeatother
+
 
 \begin{document}
     \maketitle
 
     % Problema 1
-    \subfile{exercises/exercise1.tex}    
+    \subfile{exercises/exercise1.tex}
+    
+    % Problema 2
+    \subfileinclude{exercises/exercise2.tex}
 \end{document}

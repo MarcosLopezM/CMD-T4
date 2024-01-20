@@ -11,7 +11,6 @@
     \centering
     \includegraphics[width=0.8\textwidth, height=0.25\textwidth]{example-image-a}
     \caption{Esquema del desdoblamiento de energía del nivel \(n = 1\) del átomo de deuterio. El esquema no está a escala.}
-    \label{fig:deuterium-level-splittling}
     \end{figure}
 
     \textbf{Información útil}:
@@ -36,7 +35,6 @@
     \end{equation*}
     \end{itemize}
 
-    \pagebreak
     \startsolution[print]
 
     \kant[1-2]
@@ -46,43 +44,11 @@
 
     Muestra que la ecuación de movimiento asociada al desplazamiento \(\fdif{x_{n}}\), de la \(n\)-ésima masa es:
     
-    \begin{equation*}
+    \begin{equation}
         m\fdif{\ddot{x}_{n}} = \kappa_{1}(\fdif{x_{n + 1}} - \fdif{x_{n}}) + \kappa_{1}(\fdif{x_{n - 1}} - \fdif{x_{n}}) + \kappa_{2}(\fdif{x_{n + 2}} - \fdif{x_{n}}) + \kappa_{2}(\fdif{x_{n - 2}} - \fdif{x_{n}})
-    \end{equation*}
+    \end{equation}
 
     \startsolution[print]
 
-            Sabemos que la energía potencial de la cadena está dada por:
-
-            \begin{equation*}
-                V_{\text{tot}} = \sum_{i}\dfrac{\kappa}{2}(\fdif{x_{i + 1}} - \fdif{x_{i}})^{2},
-            \end{equation*}
-
-            esto para cada una de las constantes de los resortes.
-
-            Así,
-
-            \begin{equation*}
-                V_{\text{tot}} = \dfrac{\kappa_{1}}{2}\left[(\fdif{x_{n + 1}} -\fdif{x_{n}})^{2} + (\fdif{x_{n}} - \fdif{x_{n - 1}})^{2}\right]
-                + \dfrac{\kappa_{2}}{2}\left[(\fdif{x_{n + 2}} - \fdif{x_{n}})^{2} + (\fdif{x_{n}} - \fdif{x_{n - 2}})^{2}\right]
-            \end{equation*}
-
-            La fuerza sobre la \(n\)-ésima masa está dada como
-
-            \begin{align*}
-                F_{n} = -\pdv{V_{\text{tot}}}{x_{n}} &= 
-                \begin{multlined}[t]
-                    -\dfrac{\kappa_{1}}{2}\left[2(\fdif{x_{n + 1}} - \fdif{x_{n}})\cdot (-1)
-                + 2(\fdif{x_{n}} - \fdif{x_{n - 1}})\right]\\
-                - \dfrac{\kappa_{2}}{2}\left[2(\fdif{x_{n + 2}} - \fdif{x_{n}})\cdot(-1) + 2(\fdif{x_{n}} - \fdif{x_{n - 2}})\right],
-                \end{multlined}\\
-                F_{n} &= \kappa_{1}(\fdif{x_{n + 1}} - \fdif{x_{n}}) + \kappa_{1}(\fdif{x_{n - 1}} - \fdif{x_{n}}) + \kappa_{2}(\fdif{x_{n + 1}} - \fdif{x_{n}}) + \kappa_{2}(\fdif{x_{n - 2}} - \fdif{x_{n}}).
-            \end{align*}
-
-            Y \(F = ma = m\odv[order=2]{x}{t}\), entonces
-
-            \begin{empheq}[box=\color{pinkwave}\fbox]{equation}
-                m\fdif{\ddot{x}_{n}} = \kappa_{1}(\fdif{x_{n + 1}} - \fdif{x_{n}}) + \kappa_{1}(\fdif{x_{n - 1}} - \fdif{x_{n}}) + \kappa_{2}(\fdif{x_{n + 2}} - \fdif{x_{n}}) + \kappa_{2}(\fdif{x_{n - 2}} - \fdif{x_{n}}).
-                \label{eq:EOMMonatomicChain}
-            \end{empheq}
+            \kant[1-3]
 \end{document}
