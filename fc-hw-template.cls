@@ -15,6 +15,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{fc-hw-template}[2024/01/20 Facultad de Ciencias Assignment Template]
 
+\RequirePackage{ifthen}
+\RequirePackage{xkeyval}
+\RequirePackage[dvipsnames]{xcolor}
+\definecolor{base3}{RGB}{253, 246, 227}%
+
 %% Class and Options
 \def\@@ptsize{10pt} % Default font size
 \DeclareOption{9pt}{\def\@@ptsize{9pt}}
@@ -25,12 +30,37 @@
 \DeclareOption{oneside}{\def\@twoside{0}} % one-side document
 \DeclareOption{twoside}{\def\@twoside{1}} % two-side document
 \ProcessOptions\relax
+% Define default options
+\newif\ifdigital\digitalfalse
+\DeclareOptionX{digital}[true]{\ifthenelse{\equal{#1}{true}}{\digitaltrue}{\digitalfalse}}
+
+\ProcessOptionsX
 \LoadClass[letterpaper,\@@ptsize]{article}
+
+% Define custom macros for changing page color and other actions
+\newcommand{\SetDigitalMode}{%
+    \ifdigital
+        \pagecolor{base3}
+    \fi
+}
+
+% Execute custom actions based on options after the document class is loaded
+\AtBeginDocument{\SetDigitalMode}
 
 %% Page Settings
 \RequirePackage[inner=2.0cm,outer=2.0cm,top=1.2cm,bottom=3.5cm]{geometry}
 \newcommand{\firstfooteradditionalheight}{2em} % additional height for footer on the first page
 \hfuzz=.5em % disable false positive of overfull \hbox
+
+%% LuaLaTeX Specific Package
+\RequirePackage{linebreaker} % line-breaker algorithm in LuaLaTeX
+
+% Line-breaker Settings
+\linebreakersetup {
+    maxtolerance = 90,
+    maxemergencystretch = 1em,
+    maxcycles = 4
+}
 
 %% Language Settings
 \RequirePackage{polyglossia}
@@ -54,20 +84,39 @@
 \newcommand{\duedate}[1]{\gdef\@duedate{#1}} % Due Date of the Assignment
 \newcommand{\subject}[1]{\gdef\@subject{#1}} % Subject
 
+\setlength{\parindent}{0pt} % Indentation
+\setlength{\parskip}{0.5em} % Space in between paragraphs
+\linespread{1.1} % Line spacing
+
 %% Graphics Settings
 \RequirePackage{graphicx} % Inclusion of graphics
 \usepackage[export]{adjustbox} % Extends the “key=value” interface of \includegraphics 
 \graphicspath{{img/}}
 
-%% Fonts and Colors
+%% Fonts
 \RequirePackage{fontspec}
-\RequirePackage[dvipsnames]{xcolor}
-\definecolor{base3}{RGB}{253, 246, 227}%
 \definecolor{pinkwave}{RGB}{255, 0, 128}%
 \definecolor{customBlue}{RGB}{11, 61, 98}%
 
 %% List Settings
 \RequirePackage[inline]{enumitem}
+\RequirePackage{multicol}
+\setlist[enumerate, 1] {
+    label = (\alph*),
+}
+
+% Multicol environment for lists
+\SetEnumitemKey{twocol}{
+itemsep = 1\itemsep,
+parsep = 0.5\parsep,
+before = \raggedcolumns\begin{multicols}{2},
+after = \end{multicols}}
+
+\SetEnumitemKey{threecol}{
+itemsep = 1\itemsep,
+parsep = 0.5\parsep,
+before = \raggedcolumns\begin{multicols}{3},
+after = \end{multicols}}
 
 %% TikZ Rule
 \RequirePackage{tikz}
@@ -122,12 +171,45 @@
 \RequirePackage{amssymb}
 \RequirePackage{bm} % \bm command
 \RequirePackage{derivative}
-\RequirePackage{empheq}
+\RequirePackage{empheq} % Boxes around equations
+\RequirePackage{linop} % Lineal Operators for QM
 \RequirePackage{lualatex-math}
 \RequirePackage{mismath}
 \RequirePackage{nicematrix} % Better matrix handling
 \RequirePackage{simples-matrices} % Fast matrix typing
 \numberwithin{equation}{section}
+
+\setlength{\jot}{10pt} % Space between lines in multiline eqs
+
+%% Empheq Settings
+% Defining a variant of Aboxed command from mathtools
+\newcommand\mainresult[1]{\color{pinkwave}\fboxsep=3.5pt\fboxrule=1.2pt\fbox{\color{black}#1}}
+\MakeAboxedCommand\Aboxedmain\mainresult
+\newcommand*\widefbox[1]{\fboxsep=3.5pt\fboxrule=1.5pt\fbox{#1}}
+
+\newcommand\secondaryresult[1]{\color{customBlue}\fboxsep=3.5pt\fbox{\color{black}#1}}
+\MakeAboxedCommand\Aboxedsec\secondaryresult
+
+% Custom boxes for results with background color specified by class option
+% Box for main result
+\newcommand*\resultbox[1]{%
+    \setlength\fboxrule{1.5pt}%
+    \ifdigital
+        \fcolorbox{pinkwave}{base3}{\hspace{1em}#1\hspace{1em}}%
+    \else
+        \fcolorbox{pinkwave}{white}{\hspace{1em}#1\hspace{1em}}%
+    \fi
+}
+
+% Box for relevant result
+\newcommand*\secbox[1]{%
+    \setlength\fboxrule{1pt}%
+    \ifdigital
+        \fcolorbox{pinkwave}{base3}{\hspace{1em}#1\hspace{1em}}%
+    \else
+        \fcolorbox{customBlue}{white}{\hspace{1em}#1\hspace{1em}}%
+    \fi
+}
 
 %% Physics Settings
 % \RequirePackage{phfqit} % Neccesary commands for quantum mechanics
