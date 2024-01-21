@@ -4,7 +4,7 @@
 %%                                                    %%
 %% ================================================== %%
 %%                                                    %%
-%% Version:     1.1 (2024/01/20)                      %%
+%% Version:     1.2 (2024/01/20)                      %%
 %% Author:      Marcos López Merino                   %%
 %% License:     MIT LICENSE                           %%
 %% GitHub Repo: https://tvj.one/ml-tex                %%
@@ -17,8 +17,12 @@
 
 \RequirePackage{ifthen}
 \RequirePackage{xkeyval}
+
+%% Colors
 \RequirePackage[dvipsnames]{xcolor}
 \definecolor{base3}{RGB}{253, 246, 227}%
+\definecolor{pinkwave}{RGB}{255, 0, 128}%
+\definecolor{customBlue}{RGB}{11, 61, 98}%
 
 %% Class and Options
 \def\@@ptsize{10pt} % Default font size
@@ -55,6 +59,31 @@
 %% LuaLaTeX Specific Package
 \RequirePackage{linebreaker} % line-breaker algorithm in LuaLaTeX
 
+%% Fonts
+\RequirePackage{fontspec}
+\newfontfamily\linuxlibertine[%
+    Path = fonts/linux-libertine/,
+    Extension = .otf,
+    UprightFont = *_R,
+    BoldFont = *_RB,
+    BoldItalicFont = *_RBI,
+    ItalicFont = *_RI,
+    Ligatures = {
+        TeX,
+    }
+]{LinLibertine}
+
+\newfontfamily\linuxbiolinum[%
+    Path = fonts/linux-biolinum/,
+    Extension = .otf,
+    UprightFont = *_R,
+    BoldFont = *_RB,
+    ItalicFont = *_RI,
+    Ligatures = {
+        TeX,
+    }
+]{LinBiolinum}
+
 % Line-breaker Settings
 \linebreakersetup {
     maxtolerance = 90,
@@ -69,7 +98,7 @@
 \gappto\captionsspanish{\def\tablename{Tabla}}
 \RequirePackage[es]{datetime2}
 
-%% Document Propertities
+%% Document Properties
 \global\let\@assignno\@empty
 \global\let\@group\@empty
 \global\let\@semester\@empty
@@ -90,13 +119,8 @@
 
 %% Graphics Settings
 \RequirePackage{graphicx} % Inclusion of graphics
-\usepackage[export]{adjustbox} % Extends the “key=value” interface of \includegraphics 
+\RequirePackage[export]{adjustbox} % Extends the “key=value” interface of \includegraphics 
 \graphicspath{{img/}}
-
-%% Fonts
-\RequirePackage{fontspec}
-\definecolor{pinkwave}{RGB}{255, 0, 128}%
-\definecolor{customBlue}{RGB}{11, 61, 98}%
 
 %% List Settings
 \RequirePackage[inline]{enumitem}
@@ -151,7 +175,7 @@ after = \end{multicols}}
     \def\startsolutionprintuseroption{#1}
     \ifx\startsolutionprintuseroption\startsolutionprintoption{%
         {%
-            \fontfamily{LinuxLibertineT-OsF}\selectfont% select font as Linux Libertine
+            \linuxlibertine
             \centering\LARGE\scshape%
             \vspace{\baselineskip}%
             \solutionname{}\\[-0.2em]%
@@ -212,7 +236,7 @@ after = \end{multicols}}
 }
 
 %% Physics Settings
-% \RequirePackage{phfqit} % Neccesary commands for quantum mechanics
+% \RequirePackage{phfqit} % Necessary commands for quantum mechanics
 \RequirePackage{siunitx} 
 
 % SIUnitX Settings
@@ -226,7 +250,7 @@ after = \end{multicols}}
 %% Dummy Text Settings
 \RequirePackage{kantlipsum}
 
-%% Subfiles Managment Settings
+%% Subfiles Management Settings
 \RequirePackage{subfiles}
 
 %% Bookmarks Settings
@@ -269,7 +293,7 @@ after = \end{multicols}}
 \pagestyle{fancy}
 \if\@twoside0
     \lhead{
-        \fontfamily{LinuxLibertineT-OsF}\selectfont
+        \linuxlibertine
         \textsc{\@title~\@assignno} -- ~\@author
     }
     \rhead{\thepage}
@@ -284,13 +308,13 @@ after = \end{multicols}}
         \fi
     }
     \fancyhead[LO]{
-        \fontfamily{LinuxLibertineT-OsF}\selectfont
-        \textsc{\@subject~--~\@title~\@assignno}
+        \linuxlibertine
+        \textsc{\@subject~---~\@title~\@assignno}
         \renewcommand\headrule{\vspace{-0.7em}\tikzrule[pinkwave, path fading=east]{.5\textwidth}{0.3mm}}
     }
     \fancyhead[RE]{
-        \fontfamily{LinuxLibertineT-OsF}\selectfont
-        \textsc{\@subject~--~\@title~\@assignno}
+        \linuxlibertine
+        \textsc{\@subject~---~\@title~\@assignno}
     }
     \fancyhead[LE,RO]{Pág. \thepage \hspace{1pt} de \pageref{LastPage}}
 \fi
@@ -307,12 +331,11 @@ after = \end{multicols}}
 
 %% Title Settings
 \RequirePackage{afterpage}
-\newcommand{\pdftitleadditionalname}{Solution}
 \newcommand{\setduedate}[1]{\DTMDate{#1}}
 \makeatletter         
 \renewcommand\maketitle{
     \thispagestyle{firstpage}
-    \fontfamily{LinuxLibertineT-OsF}\selectfont % set font as Linux Libertine
+    \linuxlibertine
     \enlargethispage{-\firstfooteradditionalheight} % make room for the footer
     \begin{minipage}{10.5cm}
         \centering
@@ -331,18 +354,17 @@ after = \end{multicols}}
         \centering
         {
             \normalsize
-            \fontfamily{LinuxBiolinumT-OsF}\selectfont
+            \linuxbiolinum
             \textcolor{BrickRed}{Grupo~\@group~-- \@semester}
             \vspace{2mm}
         }
-        \LARGE\@title~{\fontfamily{bch}\selectfont\@assignno}
+        \LARGE\@title~{\@assignno}
     \end{minipage}
     \\[.3em]
     \color{customBlue} \hrule width \hsize height 2pt \kern 1mm \hrule width \hsize
     % Due date
     \ifx\@duedate\@empty
         \begin{center}
-            % \vspace{4mm}
             \textbf{\normalsize Entrega:~\DTMtoday}
         \end{center}
     \else
@@ -350,9 +372,6 @@ after = \end{multicols}}
             \textbf{\normalsize Entrega:~\setduedate{\@duedate}}
         \end{center}
     \fi
-
-
-    \fontfamily{cmr}\selectfont % Computer Modern
 
     % Set up document meta data
     % Note that it should be placed here because
