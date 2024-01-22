@@ -4,7 +4,7 @@
 %%                                                    %%
 %% ================================================== %%
 %%                                                    %%
-%% Version:     1.2 (2024/01/20)                      %%
+%% Version:     1.3 (2024/01/20)                      %%
 %% Author:      Marcos López Merino                   %%
 %% License:     MIT LICENSE                           %%
 %% GitHub Repo: https://tvj.one/ml-tex                %%
@@ -162,7 +162,7 @@ after = \end{multicols}}
     {0pt}% <sep>
     {\if\relax\detokenize{#1}\relax\sectionheadname{} \thesection\else\sectionheadname{} \thesection: #1\fi}% <before-code>
     [%
-        \vspace{-1\baselineskip}\hfill{\normalfont\small\problemptsprint}%
+        \vspace{-2\baselineskip}\hfill{\normalfont\small\problemptsprint}%
         \problempts{}% clear the problem points
     ]% <after-code>
 
