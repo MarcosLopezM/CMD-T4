@@ -7,7 +7,7 @@
 %% Version:     1.3 (2024/01/20)                      %%
 %% Author:      Marcos López Merino                   %%
 %% License:     MIT LICENSE                           %%
-%% GitHub Repo: https://tvj.one/ml-tex                %%
+%% GitHub Repo: http://tinyurl.com/hw-template        %%
 %% Compiler:    lualatex                              %%
 %%                                                    %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
