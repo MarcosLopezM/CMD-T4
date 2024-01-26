@@ -4,7 +4,7 @@
 %%                                                    %%
 %% ================================================== %%
 %%                                                    %%
-%% Version:     1.3 (2024/01/20)                      %%
+%% Version:     1.4 (2024/01/26)                      %%
 %% Author:      Marcos López Merino                   %%
 %% License:     MIT LICENSE                           %%
 %% GitHub Repo: http://tinyurl.com/hw-template        %%
@@ -340,7 +340,8 @@ after = \end{multicols}}
     \begin{minipage}{10.5cm}
         \centering
         {
-            \fontsize{36}{48}\selectfont
+            % \fontsize{36}{48}\selectfont
+            \fontsize{30}{62}\selectfont
             \textcolor{Plum}{\scshape \@subject}
         }\\[.5em]
         {
@@ -353,12 +354,19 @@ after = \end{multicols}}
         \vspace{0.7em}
         \centering
         {
-            \normalsize
+            \large
             \linuxbiolinum
             \textcolor{BrickRed}{Grupo~\@group~-- \@semester}
-            \vspace{2mm}
+            }\\[.5em]
+            {
+            \ifx\@assignno\@empty
+                \vspace{2mm}
+                \LARGE\@title
+            \else
+                \vspace{2mm}
+                \LARGE\@title~{\@assignno}
+            \fi
         }
-        \LARGE\@title~{\@assignno}
     \end{minipage}
     \\[.3em]
     \color{customBlue} \hrule width \hsize height 2pt \kern 1mm \hrule width \hsize
