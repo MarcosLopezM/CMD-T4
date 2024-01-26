@@ -4,7 +4,7 @@
 %%                                                    %%
 %% ================================================== %%
 %%                                                    %%
-%% Version:     1.4 (2024/01/26)                      %%
+%% Version:     1.5 (2024/01/27)                      %%
 %% Author:      Marcos López Merino                   %%
 %% License:     MIT LICENSE                           %%
 %% GitHub Repo: http://tinyurl.com/hw-template        %%
@@ -370,6 +370,7 @@ after = \end{multicols}}
     \end{minipage}
     \\[.3em]
     \color{customBlue} \hrule width \hsize height 2pt \kern 1mm \hrule width \hsize
+    \color{black} % Reset color after rules
     % Due date
     \ifx\@duedate\@empty
         \begin{center}
