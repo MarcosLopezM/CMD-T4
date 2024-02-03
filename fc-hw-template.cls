@@ -4,7 +4,7 @@
 %%                                                    %%
 %% ================================================== %%
 %%                                                    %%
-%% Version:     1.5 (2024/01/27)                      %%
+%% Version:     1.6 (2024/02/02)                      %%
 %% Author:      Marcos López Merino                   %%
 %% License:     MIT LICENSE                           %%
 %% GitHub Repo: http://tinyurl.com/hw-template        %%
@@ -204,6 +204,18 @@ after = \end{multicols}}
 \numberwithin{equation}{section}
 
 \setlength{\jot}{10pt} % Space between lines in multiline eqs
+% Unit vectors
+\newcommand*{\uveci}{{\bm{\hat{\textnormal{\bfseries\i}}}}}
+% unit vector j
+\newcommand*{\uvecj}{{\bm{\hat{\textnormal{\bfseries\j}}}}}
+% unit vector
+\DeclareRobustCommand{\uvec}[1]{{%
+    \ifcsname uvec#1\endcsname
+        \csname uvec#1\endcsname
+    \else
+        \bm{\hat{\mathbf{#1}}}%
+    \fi
+}}% 
 
 %% Empheq Settings
 % Defining a variant of Aboxed command from mathtools
