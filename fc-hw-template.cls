@@ -220,7 +220,7 @@ after = \end{multicols}}
     \fi
 }}% 
 
-% Vectorial operators
+% Vector operators
 % Divergence
 \DeclareDifferential{\dvg}{\nabla\cdot}
 % Gradient
