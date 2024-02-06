@@ -252,7 +252,7 @@ after = \end{multicols}}
 \newcommand*\secbox[1]{%
     \setlength\fboxrule{1pt}%
     \ifdigital
-        \fcolorbox{pinkwave}{base3}{\hspace{1em}#1\hspace{1em}}%
+        \fcolorbox{customBlue}{base3}{\hspace{1em}#1\hspace{1em}}%
     \else
         \fcolorbox{customBlue}{white}{\hspace{1em}#1\hspace{1em}}%
     \fi
