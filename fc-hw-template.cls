@@ -59,6 +59,9 @@
 %% LuaLaTeX Specific Package
 \RequirePackage{linebreaker} % line-breaker algorithm in LuaLaTeX
 
+%% Multiple Packages with same name commands
+\RequirePackage{savesym} % Renames commands for conflicted packages
+
 %% Fonts
 \RequirePackage{fontspec}
 \newfontfamily\linuxlibertine[%
@@ -199,6 +202,8 @@ after = \end{multicols}}
 \RequirePackage{linop} % Lineal Operators for QM
 \RequirePackage{lualatex-math}
 \RequirePackage{mismath}
+\savesymbol{tr}
+\savesymbol{rank}
 \RequirePackage{nicematrix} % Better matrix handling
 \RequirePackage{simples-matrices} % Fast matrix typing
 \numberwithin{equation}{section}
@@ -259,7 +264,8 @@ after = \end{multicols}}
 }
 
 %% Physics Settings
-% \RequirePackage{phfqit} % Necessary commands for quantum mechanics
+\RequirePackage{phfqit} % Necessary commands for quantum mechanics
+\savesymbol{so}
 \RequirePackage{siunitx} 
 
 % SIUnitX Settings

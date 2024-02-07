@@ -2,29 +2,25 @@
 \graphicspath{{img/}}
 
 \begin{document}
-    {\LARGE\textbf{Cálculo vectorial:}\vspace*{-1.5em}}
     \section{}
-    La ecuación de una familia de elipsoides está dada por:
 
-    \begin{equation*}
-        u = \dfrac{x^{2}}{a^{2}} + \dfrac{y^{2}}{b^{2}} + \dfrac{z^{2}}{c^{2}}.
-    \end{equation*}
+    La delta de Dirac \(\delta(x - x_{0})\) tienen la propiedad de que \(\int_{-\infty}^{\infty}\delta(x - x_{0})f(x)\odif{x} = f(x_{0})\), para una función bien comportada.
 
-    Encontrar el vector unitario normal a cada punto de la superficie de estos elipsoides.
+    \begin{enumerate}
+        \item Prueben que
+        
+        \begin{equation*}
+            \int_{-\infty}^{\infty}\delta(f(x))\odif{x} = \dfrac{\delta(x - x_{0})}{\abs{f^{\prime}(x_{0})}}.
+        \end{equation*}
 
-    \startsolution[print]
+        Para una función derivable que admite inversa y en donde \(x_{0}\) es una raíz: \(f(x_{0}) = 0\). \emph{Sugerencia}. Hagan el cambio de variable \(u = f(x)\). A notar que el valor absoluto aparece porque la delta de Dirac es siempre positiva.
 
-    Para encontrar el vector normal a la familia de elipsoides debemos calcular el gradiente \(\grad{u}\), tal que,
+        \item Prueben ahora que 
+        
+        \begin{equation*}
+            \int\odif{p^{0}}\odif[order=3]{p}\, \delta((p^{0})^{2} - {\vect{p}}^{2} - m^{2}) = \int\odif[order=3]{p}\dfrac{1}{2E},
+        \end{equation*}
 
-    \begin{empheq}[box = \secbox]{equation*}
-        \grad{u} = 2\left(\dfrac{x}{a^{2}}, \dfrac{y}{b^{2}}, \dfrac{z}{c^{2}}\right).
-    \end{empheq}
-
-    Sin embargo, este vector no está normalizado, por lo que debemos dividir por su magnitud para obtener el vector unitario normal, es decir,
-
-    \begin{align*}
-        \op{u} &= \dfrac{\grad{u}}{\norm{\grad{u}}},\\
-        &= \dfrac{2\left(\tfrac{x}{a^{2}}, \tfrac{y}{b^{2}}, \tfrac{z}{c^{2}}\right)}{\sqrt{4 \left(\tfrac{x^{2}}{a^{4}} + \tfrac{y^{2}}{b^{4}} + \tfrac{z^{2}}{c^{4}}\right)}},\\
-        \Aboxedmain{\op{u} &= \dfrac{\left(\tfrac{x}{a^{2}}, \tfrac{y}{b^{2}}, \tfrac{z}{c^{2}}\right)}{\sqrt{\tfrac{x^{2}}{a^{4}} + \tfrac{y^{2}}{b^{4}} + \tfrac{z^{2}}{c^{4}}}}.}
-    \end{align*}
+        en donde \(E = \sqrt{{\vect{p}}^{2} + m^{2}}\).
+    \end{enumerate}
 \end{document}
