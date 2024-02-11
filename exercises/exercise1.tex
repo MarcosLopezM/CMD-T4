@@ -4,23 +4,34 @@
 \begin{document}
     \section{}
 
-    La delta de Dirac \(\delta(x - x_{0})\) tienen la propiedad de que \(\int_{-\infty}^{\infty}\delta(x - x_{0})f(x)\odif{x} = f(x_{0})\), para una función bien comportada.
+    Considerar el campo de desplazamientos definido por:
 
-    \begin{enumerate}
-        \item Prueben que
-        
-        \begin{equation*}
-            \int_{-\infty}^{\infty}\delta(f(x))\odif{x} = \dfrac{\delta(x - x_{0})}{\abs{f^{\prime}(x_{0})}}.
-        \end{equation*}
+    \begin{equation*}
+        \vect{u}(x, y, t) = u(x, y, t)\ex + v(x, y, t)\ey
+    \end{equation*}
 
-        Para una función derivable que admite inversa y en donde \(x_{0}\) es una raíz: \(f(x_{0}) = 0\). \emph{Sugerencia}. Hagan el cambio de variable \(u = f(x)\). A notar que el valor absoluto aparece porque la delta de Dirac es siempre positiva.
+    donde
 
-        \item Prueben ahora que 
-        
-        \begin{equation*}
-            \int\odif{p^{0}}\odif[order=3]{p}\, \delta((p^{0})^{2} - {\vect{p}}^{2} - m^{2}) = \int\odif[order=3]{p}\dfrac{1}{2E},
-        \end{equation*}
+    \begin{alignat*}{2}
+        u(x, y, t) &= \sin\bigl(\tfrac{2\pi x}{L}\bigr)\cos\bigl(\tfrac{2\pi y}{L}\bigr) &\qquad\qquad & v = -\cos\bigl(\tfrac{2\pi x}{L}\bigr)\sin\bigl(\tfrac{2\pi y}{L}\bigr) \\
+    \end{alignat*}
 
-        en donde \(E = \sqrt{{\vect{p}}^{2} + m^{2}}\).
+    en el dominio \(0 \leq x \leq L_{x} = 1\), \(0 \leq y \leq L_{y} = 1\).
+    
+    Determinar:
+
+    \begin{enumerate}[label=\arabic*)]
+        \item el tensor de gradiente del campo de desplazamientos,
+        \item el tensor de deformación (parte simétrica del gradiente del campo de desplazamientos),
+        \item el tensor de rotación (parte antisimétrica del gradiente del campo de desplazamientos),
+        \item el vector de rotación,
+        \item la divergencia. 
+    \end{enumerate}
+
+    Graficar:
+
+    \begin{enumerate}[resume, label=\arabic*)]
+        \item campo de desplazamientos,
+        \item vector de rotación (nota: considerar como un campo escalar).
     \end{enumerate}
 \end{document}
