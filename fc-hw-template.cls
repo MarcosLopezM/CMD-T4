@@ -4,7 +4,7 @@
 %%                                                    %%
 %% ================================================== %%
 %%                                                    %%
-%% Version:     1.7 (2024/02/02)                      %%
+%% Version:     1.8 (2024/02/14)                      %%
 %% Author:      Marcos López Merino                   %%
 %% License:     MIT LICENSE                           %%
 %% GitHub Repo: http://tinyurl.com/hw-template        %%
@@ -232,6 +232,8 @@ after = \end{multicols}}
 \DeclareDifferential{\grad}{\nabla}
 % Curl
 \DeclareDifferential{\curl}{\nabla\mul}
+% Laplacian
+\DeclareDifferential{\lap}{\nabla^2}
 
 %% Empheq Settings
 % Defining a variant of Aboxed command from mathtools
