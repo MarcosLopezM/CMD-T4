@@ -122,7 +122,7 @@
         Por lo que el tensor de rotación queda como
 
         \begin{empheq}[box=\resultbox]{equation*}
-            \dbloverline{\omega} = 2\tfrac{2\pi}{L}
+            \dbloverline{\omega} = \tfrac{2\pi}{L}
             \begin{bNiceMatrix}
                 0 & -\sin\bigl(\tfrac{2\pi x}{L}\bigr)\sin\bigl(\tfrac{2\pi y}{L}\bigr) & 0 \\
                 \sin\bigl(\tfrac{2\pi x}{L}\bigr)\sin\bigl(\tfrac{2\pi y}{L}\bigr) & 0 & 0 \\
@@ -132,18 +132,25 @@
         
         \item el vector de rotación,
         
-        Calculamos \(\curl{\vect{u}}\) tal que
+        Calculamos el vector de rotación \(\vect{\omega}_{*}\) definido como 
+
+        \begin{equation*}
+            \vect{\omega}_{*} = \curl{\vect{u}},
+        \end{equation*}
+
+        tal que,
 
         \begin{align*}
-            \curl{\vect{u}} &= \begin{vNiceMatrix}[baseline=3]
+            \vect{\omega}_{*} &= \begin{multlined}[t]
+            \begin{vNiceMatrix}[baseline=3]
                 \ex & \ey & \ez \\
                 \pdv{}{x} & \pdv{}{y} & \pdv{}{z}\\
                 \sin\bigl(\tfrac{2\pi x}{L}\bigr)\cos\bigl(\tfrac{2\pi y}{L}\bigr) & -\cos\bigl(\tfrac{2\pi x}{L}\bigr)\sin\bigl(\tfrac{2\pi y}{L}\bigr) & 0
-            \end{vNiceMatrix},\\
+            \end{vNiceMatrix},\end{multlined}\\
             &= \ex\Bigl(\pdv{w}{z}\Bigr) - \ey\Bigl(-\pdv{u}{z}\Bigr) + \ez\Bigl(\pdv{v}{x} - \pdv{u}{y}\Bigr),\\
-            &= \tfrac{2\pi}{L}\Bigl(\sin\bigl(\tfrac{2\pi x}{L}\bigr)\sin\bigl(\tfrac{2\pi y}{L}\bigr)\ex + \sin\bigl(\tfrac{2\pi x}{L}\bigr)\sin\bigl(\tfrac{2\pi y}{L}\bigr)\Bigr),\\
+            &= \tfrac{2\pi}{L}\Bigl(\sin\bigl(\tfrac{2\pi x}{L}\bigr)\sin\bigl(\tfrac{2\pi y}{L}\bigr) + \sin\bigl(\tfrac{2\pi x}{L}\bigr)\sin\bigl(\tfrac{2\pi y}{L}\bigr)\Bigr)\ez,\\
             \Aboxedmain{
-                \curl{\vect{u}} &= \Bigl(0, 0, \tfrac{4\pi}{L}\sin\bigl(\tfrac{2\pi x}{L}\bigr)\sin\bigl(\tfrac{2\pi y}{L}\bigr)\Bigr).
+                \vect{\omega}_{*} &= \Bigl(0, 0, \tfrac{4\pi}{L}\sin\bigl(\tfrac{2\pi x}{L}\bigr)\sin\bigl(\tfrac{2\pi y}{L}\bigr)\Bigr).
             }
         \end{align*}
         
