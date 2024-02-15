@@ -30,5 +30,8 @@ rotVect = (4*pi/L)*sin(2*pi*X/L).*sin(2*pi*Y/L);
 
 % Gráfica del vector de rotación como un campo escalar
 contourf(X, Y, rotVect)
+xlabel('$x$', 'Interpreter','latex', 'FontSize', 14)
+ylabel('$y$', 'Interpreter', 'latex', 'FontSize', 14)
+colorbar
 colormap parula
 saveas(gcf, "\\wsl.localhost\Ubuntu\home\marcoslm\Projects\University\2024-2\dmd\Tareas\T1\img\vector-rotacion", 'jpg')
