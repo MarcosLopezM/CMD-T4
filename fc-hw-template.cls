@@ -4,7 +4,7 @@
 %%                                                    %%
 %% ================================================== %%
 %%                                                    %%
-%% Version:     1.8 (2024/02/14)                      %%
+%% Version:     1.9 (2024/03/18)                      %%
 %% Author:      Marcos López Merino                   %%
 %% License:     MIT LICENSE                           %%
 %% GitHub Repo: http://tinyurl.com/hw-template        %%
@@ -318,6 +318,8 @@ after = \end{multicols}}
     menubordercolor={[rgb]{0,0.2,0.6}},% 
     unicode=true,%
 }
+
+\crefname{equation}{}{} % Equation's cross-reference name
 
 \setlength{\headheight}{52pt}
 \setlength{\marginparwidth}{2cm}
