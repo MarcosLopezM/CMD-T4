@@ -2,73 +2,154 @@
 \graphicspath{{img/}}
 
 \begin{document}
-    \section{}
+    \problempts{5}
+    \section{Formulación de deformación plana}
     
-    Considera el campo escalar definido por:
+    Escribir las siguientes relaciones para la formulación de deformación plana:
 
-    \begin{equation*}
-        \phi(x, y) = x^{2} - y^{2}
-    \end{equation*}
+    \begin{itemize}
+        \item Deformación-desplazamiento
+        \item Ecuaciones de equilibrio
+        \item Ecuaciones de Hooke
+        \item Ecuaciones de Navier
+        \item Ecuaciones de Michell-Beltrami
+    \end{itemize}
 
-    en el dominio \(0 \leq x \leq L_{x}\), \(0 \leq y \leq L_{y}\).
+    Para esta formulación tenemos que el tensor de deformaciones es
 
-    Determinar:
+    \begin{equation}
+        \varepsilon_{ij} = 
+        \begin{bNiceMatrix}
+            \varepsilon_{xx} & \varepsilon_{xy} & 0\\
+            \varepsilon_{yx} & \varepsilon_{yy} & 0\\
+            0 & 0 & 0.
+        \end{bNiceMatrix}
+        \label{eq:strain_tensor_deformation}
+    \end{equation}
 
-    \begin{enumerate}[label=\arabic*)]
-        \item el gradiente del campo escalar,
-        
-        Calculamos el gradiente del campo escalar como
+    Y que la relación de deformación-desplazamiento es igual a la de tensión plana \cref{eq:strain_displacement_relationship}, \emph{i.e.},
 
-        \begin{align}
-            \grad{{\phi(x, y)}} &= \Bigl( \pdv{\phi}{x}, \pdv{\phi}{y}, 0\Bigr),\nonumber\\
-            \Aboxedmain{
-                \grad{{\phi(x, y)}} &= (2x, -2y, 0).
-                \label{eq:gradient-scalar-field}
-            }
-        \end{align}
-        
-        \item el Laplaciano del campo escalar,
-        
-        Recordemos que el Laplaciano de un campo escalar se define como
+    \begin{empheq}[box = \resultbox]{equation}
+        \varepsilon_{ij} = 
+        \begin{bNiceMatrix}
+            \pdv{u}{x} & \tfrac{1}{2}\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr) & 0\\
+            \tfrac{1}{2}\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr) & \pdv{v}{y} & 0\\
+            0 & 0 & 0    
+        \end{bNiceMatrix}.
+        \label{eq:strain_displacement_relationship_deformation}
+    \end{empheq}
 
-        \begin{equation*}
-            \lap{\phi} = \dvg{(\grad{\phi})},
-        \end{equation*}
+    Mientras que las ecuaciones de equilibrio son iguales a las de tensión plana \cref{eq:equilibrium_equations},
 
-        entonces simplemente calculamos la divergencia de \cref{eq:gradient-scalar-field}:
+    \begin{empheq}[box=\resultbox]{equation}
+        \begin{aligned}
+            \pdv{\sigma_{xx}}{x} + \pdv{\sigma_{yx}}{y} + B_{x} &= 0,\\
+            \pdv{\sigma_{xy}}{x} + \pdv{\sigma_{yy}}{y} + B_{y} &= 0.
+        \end{aligned}
+        \label{eq:equilibrium_equations_deformation}
+    \end{empheq}
 
-        \begin{align*}
-            \lap{{\phi(x, y)}} &= \pdv{(2x)}{x} - \pdv{(2y)}{y},\\
-            &= 2 - 2,\\
-            \Aboxedmain{
-                \lap{{\phi(x, y)}} &= 0.
-            }
-        \end{align*}
-    \end{enumerate}
+    La ley de Hooke para este caso está dada por
+
+    \begin{equation}
+        \sigma_{ij} = \lambda\delta_{ij}\varepsilon_{kk} + 2\mu\varepsilon_{ij},
+        \label{eq:hooke_equation_deformation}
+    \end{equation}
 
     \pagebreak
-    Graficar:
-    \begin{enumerate}[label=\arabic*), resume]
-        \item el campo escalar \(\phi\),
-        
-        La gráfica del campo escalar \(\phi(x, y) = x^{2} - y^{2}\) se muestra en la \cref{fig:scalar-field}.
+    tal que,
 
-        \begin{figure}[htb]
-            \centering
-            \includegraphics[width=0.55\textwidth]{campo-escalar}
-            \caption{Gráfica del campo escalar \(\phi(x, y) = x^{2} - y^{2}\).}
-            \label{fig:scalar-field}
-        \end{figure}
-        
-        \item el gradiente del campo escalar.
-        
-        La gráfica del gradiente del campo escalar \(\grad{{\phi(x, y)}} = (2x, -2y, 0)\) se muestra en la \cref{fig:gradient-scalar-field}.
+    \begin{align*}
+        \sigma_{xx} &= \lambda(\varepsilon_{xx} + \varepsilon_{yy} + \varepsilon_{zz}) + 2\mu\varepsilon_{xx},\\
+        \sigma_{yy} &= \lambda(\varepsilon_{xx} + \varepsilon_{yy} + \varepsilon_{zz}) + 2\mu\varepsilon_{yy},\\
+        \sigma_{zz} &= \lambda(\varepsilon_{xx} + \varepsilon_{yy} + \varepsilon_{zz}) + 2\mu\varepsilon_{zz},\\
+        \sigma_{xy} &= 2\mu\varepsilon_{xy} = \sigma_{yx},\\
+        \sigma_{yz} &= 2\mu\varepsilon_{yz} = \sigma_{zy},\\
+        \sigma_{xz} &= 2\mu\varepsilon_{xz} = \sigma_{zx}.
+    \end{align*}
 
-        \begin{figure}[htb]
-            \centering
-            \includegraphics[width=0.6\textwidth]{gradiente-campo-escalar}
-            \caption{Gráfica del gradiente del campo escalar \(\grad{{\phi(x, y)}} = (2x, -2y, 0)\).}
-            \label{fig:gradient-scalar-field}
-        \end{figure}
-    \end{enumerate}
+    Que por \cref{eq:strain_tensor_deformation} se reducen a
+
+    \begin{empheq}[box=\resultbox]{equation}
+        \begin{aligned}
+            \sigma_{xx} &= \lambda(\varepsilon_{xx} + \varepsilon_{yy}) + 2\mu\varepsilon_{xx},\\
+            \sigma_{yy} &= \lambda(\varepsilon_{xx} + \varepsilon_{yy}) + 2\mu\varepsilon_{yy},\\
+            \sigma_{zz} &= \lambda(\varepsilon_{xx} + \varepsilon_{yy}),\\
+            \sigma_{xy} &= 2\mu\varepsilon_{xy} = \sigma_{yx},\\
+            \sigma_{xz} &= \sigma_{yz} = 0.
+        \end{aligned}
+        \label{eq:hooke_equations_deformation}
+    \end{empheq}
+
+    Ahora, para las ecuaciones de Navier primero sustituimos \cref{eq:strain_displacement_relationship_deformation} en \cref{eq:hooke_equations_deformation},
+
+    \begin{align*}
+        \sigma_{xx} &= (\lambda + 2\mu)\pdv{u}{x} + \lambda\pdv{v}{y},\\
+        \sigma_{yy} &= (\lambda + 2\mu)\pdv{v}{y} + \lambda\pdv{u}{x},\\
+        \sigma_{zz} &= \lambda\Bigl(\pdv{u}{x} + \pdv{v}{y}\Bigr),\\
+        \sigma_{xy} &= \mu\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr).
+    \end{align*}
+
+    \pagebreak
+    Introduciendo las relaciones anteriores en las ecuaciones de equilibrio \cref{eq:equilibrium_equations_deformation} tenemos que las ecuaciones de Navier son:
+
+    \begin{align}
+        \implies\pdv{}{x}\Biggl[(\lambda + 2\mu)\pdv{u}{x} + \lambda\pdv{v}{y}\Biggr] + \pdv{}{y}\Biggl[\mu\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr)\Biggr] + B_{x} &= 0,\nonumber\\
+        \lambda\pdv[order=2]{u}{x} + \mu\pdv[order=2]{u}{x} + \mu\pdv[order=2]{u}{x} + \lambda\pdv{v}{x,y} + \mu\pdv[order=2]{u}{y} + \mu\pdv{v}{x,y} + B_{x} &= 0,\nonumber\\
+        \mu\Biggl(\pdv[order=2]{u}{x} + \pdv[order=2]{u}{y}\Biggr) + (\lambda + \mu)\pdv{}{x}\Biggl(\pdv{u}{x} + \pdv{v}{y}\Biggr) + B_{x} &= 0.\label{eq:navier_equation_x}
+    \end{align}
+
+    \begin{align}
+        \implies\pdv{}{x}\Biggl[\mu\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr)\Biggr] + \pdv{}{y}\Biggl[(\lambda + 2\mu)\pdv{v}{y} + \lambda\pdv{u}{x}\Biggr] + B_{y} &= 0,\nonumber\\
+        \mu\Biggl(\pdv[order=2]{v}{x} + \pdv[order=2]{v}{y}\Biggr) + (\lambda + \mu)\pdv{}{y}\Biggl(\pdv{u}{x} + \pdv{v}{y}\Biggr) + B_{y} &= 0.\label{eq:navier_equation_y}
+    \end{align}
+
+    Reescribiendo \cref{eq:navier_equation_x,eq:navier_equation_y} en notación vectorial, las ecuaciones de Navier para la deformación plana son
+
+    \begin{empheq}[box=\resultbox]{align*}
+        \mu\lap{u} + (\lambda + \mu)\pdv{}{x}\Biggl(\pdv{u}{x} + \pdv{v}{y}\Biggr) + B_{x} &= 0,\\
+        \mu\lap{v} + (\lambda + \mu)\pdv{}{y}\Biggl(\pdv{u}{x} + \pdv{v}{y}\Biggr) + B_{y} &= 0.
+    \end{empheq}
+
+    Para obtener las ecuaciones de Michell-Beltrami, invertimos las relaciones \cref{eq:hooke_equations_deformation}, \emph{i.e.}, es análogo al caso de tensión plana,
+
+    \begin{align*}
+        \varepsilon_{xx} + \varepsilon_{yy} = \dfrac{1}{2(\lambda + \mu)}(\sigma_{xx} + \sigma_{yy}),\\
+        \varepsilon_{xx} - \varepsilon_{yy} = \dfrac{1}{2\mu}(\sigma_{xx} - \sigma_{yy}).
+    \end{align*}
+
+    Para \(\varepsilon_{xx}\),
+
+    \begin{equation}
+        \varepsilon_{xx} = \dfrac{(1 + \nu)}{E}((1 - \nu)\sigma_{xx} - \nu\sigma_{yy}).
+        \label{eq:epsilon_xx_deformation}
+    \end{equation}
+
+    Para \(\varepsilon_{yy}\),
+
+    \begin{equation}
+        \varepsilon_{yy} = \dfrac{(1 + \nu)}{E}((1 - \nu)\sigma_{yy} - \nu\sigma_{xx}).
+        \label{eq:epsilon_yy_deformation}
+    \end{equation}
+
+    Y, además, por \cref{eq:strain_tensor_deformation} \(\varepsilon_{zz} = 0\). Para \(\varepsilon_{xy}\),
+
+    \begin{equation}
+        \varepsilon_{xy} = \dfrac{1 + \nu}{E}\sigma_{xy}.
+        \label{eq:epsilon_xy_deformation}
+    \end{equation}
+
+    Introduciendo \crefrange{eq:epsilon_xx_deformation}{eq:epsilon_xy_deformation} en las ecuaciones de compatibilidad \cref{eq:compatibility_equation},
+
+    \begin{align*}
+        \pdv[order=2]{}{y}\Biggl[\Bigl(\dfrac{1 + \nu}{E}\Bigr)((1 -  \nu)\sigma_{xx} - \nu\sigma_{yy})\Biggr] + \pdv[order=2]{}{x}\Biggl[\Bigl(\dfrac{1 + \nu}{E}\Bigr)((1 -  \nu)\sigma_{yy} - \nu\sigma_{xx})\Biggr] &= 2\Bigl(\dfrac{1 + \nu}{E}\Bigr)\pdv{\sigma_{xy}}{x,y},\\
+        \Biggl(\pdv[order=2]{\sigma_{xx}}{x} + \pdv[order=2]{\sigma_{xx}}{y}\Biggr) + \Biggl(\pdv[order=2]{\sigma_{yy}}{x} + \pdv[order=2]{\sigma_{yy}}{y}\Biggr) - \nu\Biggl(\pdv[order=2]{\sigma_{xx}}{x} + \pdv[order=2]{\sigma_{xx}}{y}\Biggr) - \nu\Biggl(\pdv[order=2]{\sigma_{yy}}{x} + \pdv[order=2]{\sigma_{yy}}{y}\Biggr) &= 2\pdv{\sigma_{xy}}{x,y} + \pdv[order=2]{\sigma_{xx}}{x} + \pdv[order=2]{\sigma_{yy}}{y},\\
+        (1 - \nu)\lap{(\sigma_{xx} + \sigma_{yy})} &= 2\pdv{\sigma_{xy}}{x,y} + \pdv[order=2]{\sigma_{xx}}{x} + \pdv[order=2]{\sigma_{yy}}{y}.
+    \end{align*}
+
+    Sustituyendo \cref{eq:volumen_forces_tension} en la expresión anterior, tenemos que la ecuación de Michell-Beltrami para la formulación de deformación plana es
+
+    \begin{empheq}[box=\resultbox]{equation*}
+        \lap{(\sigma_{xx} + \sigma_{yy})} = -\dfrac{1}{1 - \nu}\Biggl(\pdv{B_{x}}{x} + \pdv{By}{y}\Biggr).
+    \end{empheq}
 \end{document}
