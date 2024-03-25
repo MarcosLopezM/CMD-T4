@@ -3,198 +3,25 @@
 
 \begin{document}
     \problempts{5}
-    \section{Formulación de tensión plana}
 
-    Escribir las siguientes relaciones para la formulación de tensión plana:
+    \section{Campo de desplazamientos}
 
-    \begin{itemize}
-        \item Deformación-desplazamiento
-        \item Ecuaciones de equilibrio
-        \item Ecuaciones de Hooke
-        \item Ecuaciones de Navier
-        \item Ecuaciones de Michell-Beltrami
-    \end{itemize}
-
-    El tensor de esfuerzos de Cauchy para esta formulación está dado como:
-
-    \begin{equation}
-        \sigma_{ij} = \begin{bNiceMatrix}
-            \sigma_{xx} & \sigma_{xy} & 0\\
-            \sigma_{yx} & \sigma_{yy} & 0\\
-            0 & 0 & 0.
-        \end{bNiceMatrix}
-        \label{eq:cauchy_stress_tensor}
-    \end{equation}
-
-    Para escribir la relación de deformación-desplazamiento debemos escribir el tensor de deformación en términos de los desplazamientos, \emph{i.e.},
-
-    \begin{equation}
-        \varepsilon_{ij} = \tfrac{1}{2}[u_{i,j} + u_{j,i}].
-        \label{eq:strain_tensor}
-    \end{equation}
-
-    Así,
-
-    \begin{equation*}
-        \varepsilon_{ij} =
-            \begin{bNiceMatrix}
-                \pdv{u}{x} & \tfrac{1}{2}\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr) & \tfrac{1}{2}\Bigl(\pdv{u}{z} + \pdv{w}{x}\Bigr)\\
-                \tfrac{1}{2}\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr) & \pdv{v}{y} & \tfrac{1}{2}\Bigl(\pdv{v}{z} + \pdv{w}{y}\Bigr)\\
-                \tfrac{1}{2}\Bigl(\pdv{u}{z} + \pdv{w}{x}\Bigr) & \tfrac{1}{2}\Bigl(\pdv{v}{z} + \pdv{w}{y}\Bigr) & \pdv{w}{z}
-            \end{bNiceMatrix}
-    \end{equation*}
-
-    Recordando que para esta formulación \(w = 0\) y que \(u,v\) no dependen de \(z\), tal que
-
-    \begin{equation}
-        \pdv{u_{i}}{z} = \pdv{w}{x^{i}} = 0.
-        \label{eq:z_dependence_strain}
-    \end{equation}
-
-    Entonces, la relación de deformación-desplazamiento se reduce a
-
-    \begin{empheq}[box = \resultbox]{equation}
-        \varepsilon_{ij} = 
-        \begin{bNiceMatrix}
-            \pdv{u}{x} & \tfrac{1}{2}\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr) & 0\\
-            \tfrac{1}{2}\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr) & \pdv{v}{y} & 0\\
-            0 & 0 & 0    
-        \end{bNiceMatrix}.
-        \label{eq:strain_displacement_relationship}
-    \end{empheq}
-
-    Mientras las ecuaciones de equilibrios están dadas mediante
-
-    \begin{equation*}
-        \sigma_{ji,j} + B_{i} = 0.
-    \end{equation*}
-
-    Estas ecuaciones son
+    Graficar el campo de desplazamientos de una barra prismática bajo su propio peso dado por:
 
     \begin{align*}
-        \pdv{\sigma_{xx}}{x} + \pdv{\sigma_{yx}}{y} + \pdv{\sigma_{xx}}{z} + B_{x} &= 0,\\
-        \pdv{\sigma_{xy}}{x} + \pdv{\sigma_{yy}}{y} + \pdv{\sigma_{zy}}{z} + B_{y} &= 0,\\
-        \pdv{\sigma_{xz}}{x} + \pdv{\sigma_{zz}}{y} + \pdv{\sigma_{zz}}{z} + B_{z} &= 0.
+        u &= \dfrac{-\nu\rho gxz}{E},\\
+        v &= \dfrac{-\nu\rho gyz}{E},\\
+        w &= \dfrac{\rho g}{2E}\Bigl[z^{2} + \nu(x^{2} + y^{2}) - L^{2}\Bigr]
     \end{align*}
 
-    Y por \cref{eq:cauchy_stress_tensor} se reducen a
+    con \(\nu\) el coeficiente de Poisson, \(E\) el módulo de Young, \(g\) la aceleración debida al campo gravitacional y \(L\) la longitud del material.
 
-    \begin{empheq}[box=\resultbox]{equation}
-        \begin{aligned}
-            \pdv{\sigma_{xx}}{x} + \pdv{\sigma_{yx}}{y} + B_{x} &= 0,\\
-            \pdv{\sigma_{xy}}{x} + \pdv{\sigma_{yy}}{y} + B_{y} &= 0.
-        \end{aligned}
-        \label{eq:equilibrium_equations}
-    \end{empheq}
+    El campo de desplazamientos para este problema se ve como se muestra en la \cref{fig:displacement-field}
 
-    La relación inversa de la ley de Hooke está dada por
-
-    \begin{equation}
-        \varepsilon_{ij} = \dfrac{1 - \nu}{E}\sigma_{ij} - \dfrac{\nu}{E}\delta_{ij}\sigma_{kk},
-        \label{eq:inverse-hooke_law}
-    \end{equation}
-
-    \pagebreak
-    tal que para esta formulación se ve como:
-
-    \begin{align*}
-        \varepsilon_{xx} &= \dfrac{1 - \nu}{E}\sigma_{xx} - \dfrac{\nu}{E}(\sigma_{xx} + \sigma_{yy} + \sigma_{zz}),\\
-        \varepsilon_{yy} &= \dfrac{1 - \nu}{E}\sigma_{yy} - \dfrac{\nu}{E}(\sigma_{xx} + \sigma_{yy} + \sigma_{zz}),\\
-        \varepsilon_{zz} &= \dfrac{1 - \nu}{E}\sigma_{zz} - \dfrac{\nu}{E}(\sigma_{xx} + \sigma_{yy} + \sigma_{zz}),\\
-        \varepsilon_{xy} &= \dfrac{1 - \nu}{E}\sigma_{xy},\\
-        \varepsilon_{yz} &= \dfrac{1 - \nu}{E}\sigma_{yz},\\
-        \varepsilon_{xz} &= \dfrac{1 - \nu}{E}\sigma_{xz}.
-    \end{align*}
-
-    Que por \cref{eq:cauchy_stress_tensor} se reducen a
-
-    \begin{empheq}[box=\resultbox]{align}
-        \varepsilon_{xx} &= \dfrac{1}{E}\sigma_{xx} - \dfrac{\nu}{E}\sigma_{yy},\label{eq:inverse-hooke_law_xx}\\
-        \varepsilon_{yy} &= \dfrac{1}{E}\sigma_{yy} - \dfrac{\nu}{E}\sigma_{xx},\label{eq:inverse-hooke_law_yy}\\
-        \varepsilon_{zz} &= -\dfrac{\nu}{E}(\sigma_{xx} + \sigma_{yy}),\label{eq:inverse-hooke_law_zz}\\
-        \varepsilon_{xy} &= \dfrac{1 + \nu}{E}\sigma_{xy},\label{eq:inverse-hooke_law_xy}\\
-        \varepsilon_{xz} &= \varepsilon_{yz} = 0.\nonumber
-    \end{empheq}
-
-    Invertimos \crefrange{eq:inverse-hooke_law_xx}{eq:inverse-hooke_law_xy}; primero sumamos y restamos \cref{eq:inverse-hooke_law_xx} y \cref{eq:inverse-hooke_law_yy},
-
-    \begin{alignat}{3}
-        \varepsilon_{xx} + \varepsilon_{yy} &= \dfrac{1 - \nu}{E}(\sigma_{xx} + \sigma_{yy})\quad &{}\implies{}& \sigma_{xx} + \sigma_{yy} &{}={}& = \dfrac{E}{1 - \nu}( \varepsilon_{xx} + \varepsilon_{yy}),\label{eq:sum_strain}\\
-        \varepsilon_{xx} - \varepsilon_{yy} &= \dfrac{1 + \nu}{E}(\sigma_{xx} - \sigma_{yy})\quad &{}\implies{}& \sigma_{xx} - \sigma_{yy} &{}={}& = \dfrac{E}{1 + \nu}( \varepsilon_{xx} - \varepsilon_{yy}).\label{eq:diff_strain}
-    \end{alignat}
-
-    \pagebreak
-    Para obtener \(\sigma_{xx}\) sumamos \cref{eq:sum_strain} y \cref{eq:diff_strain},
-
-    \begin{align}
-        2\sigma_{xx} &= \dfrac{E}{1 - \nu}(\varepsilon_{xx} + \varepsilon_{yy}) + \dfrac{E}{1 + \nu}(\varepsilon_{xx} - \varepsilon_{yy})\nonumber\\
-        &= E\Biggl[\dfrac{(1 + \nu)(\varepsilon_{xx} + \varepsilon_{yy}) + (1 - \nu)(\varepsilon_{xx} - \varepsilon_{yy})}{1 - \nu^{2}}\Biggr],\nonumber\\
-        &= \dfrac{E}{1 - \nu^{2}}[2\varepsilon_{xx} + 2\nu\varepsilon_{yy}],\nonumber\\
-        \sigma_{xx} &= \dfrac{E}{1 - \nu^{2}}[\varepsilon_{xx} + \nu\varepsilon_{yy}].\label{eq:sigma_xx}
-    \end{align}
-
-    Y para obtener \(\sigma_{yy}\) restamos \cref{eq:sum_strain} y \cref{eq:diff_strain},
-
-    \begin{align}
-        2\sigma_{yy} &= E\Biggl[\dfrac{(1 + \nu)(\varepsilon_{xx} + \varepsilon_{yy}) - (1 - \nu)(\varepsilon_{xx} - \varepsilon_{yy})}{1 - \nu^{2}}\Biggr],\nonumber\\
-        \sigma_{yy} &= \dfrac{E}{1 - \nu^{2}}[\nu\varepsilon_{xx} + \varepsilon_{yy}].\label{eq:sigma_yy}
-    \end{align}
-
-    De \cref{eq:cauchy_stress_tensor} sabemos que \(\sigma_{zz} = 0\). Finalmente, resolvemos \cref{eq:inverse-hooke_law_xy} para \(\sigma_{xy}\),
-
-    \begin{equation}
-        \sigma_{xy} = \dfrac{E}{1 + \nu}\varepsilon_{xy}.
-        \label{eq:sigma_xy}
-    \end{equation}
-
-    Para las ecuaciones de Navier, primero sustituimos \cref{eq:strain_displacement_relationship} en \crefrange{eq:sigma_xx}{eq:sigma_xy},
-
-    \begin{align*}
-        \sigma_{xx} &= \dfrac{E}{1 - \nu^{2}}\Bigl(\pdv{u}{x} + \nu\pdv{v}{y}\Bigr),\\
-        \sigma_{yy} &= \dfrac{E}{1 - \nu^{2}}\Bigl(\nu\pdv{u}{x} + \pdv{v}{y}\Bigr),\\
-        \sigma_{xy} &= \dfrac{E}{2(1 + \nu)}\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr),\\
-        \sigma_{zz} &= \sigma_{yz} = \sigma_{xz} = 0.
-    \end{align*}
-
-    Introduciendo las relaciones anteriores en las ecuaciones de equilibrio \cref{eq:equilibrium_equations} obtenemos las ecuaciones de Navier
-
-    \begin{empheq}[box=\resultbox]{align*}
-        \pdv{}{x}\Biggl[\dfrac{E}{1 - \nu^{2}}\Bigl(\pdv{u}{x} + \nu\pdv{v}{y}\Bigr)\Biggr] + \pdv{}{y}\Biggl[\dfrac{E}{2(1 + \nu)}\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr)\Biggr] + B_{x} &= 0,\\
-        \pdv{}{x}\Biggl[\dfrac{E}{2(1 + \nu)}\Bigl(\pdv{u}{y} + \pdv{v}{x}\Bigr)\Biggr] + \pdv{}{y}\Biggl[\dfrac{E}{1 - \nu^{2}}\Bigl(\nu\pdv{u}{x} + \pdv{v}{y}\Bigr)\Biggr] + B_{y} &= 0.
-    \end{empheq}
-
-    Finalmente, para las ecuaciones de Michell-Beltrami, partimos de las ecuaciones de compatibilidad, de las que ``sobrevive'' únicamente
-
-    \begin{equation}
-        \pdv[order=2]{\varepsilon_{xx}}{y} + \pdv[order=2]{\varepsilon_{yy}}{x} = 2\pdv{\varepsilon_{xy}}{x,y}.
-        \label{eq:compatibility_equation}
-    \end{equation}
-
-    Introduciendo las relaciones \crefrange{eq:inverse-hooke_law_xx}{eq:inverse-hooke_law_xy},
-
-    \begin{align}
-        \dfrac{1}{E}\pdv[order=2]{\sigma_{xx}}{y} - \dfrac{\nu}{E}\pdv[order=2]{\sigma_{yy}}{y} + \dfrac{1}{E}\pdv[order=2]{\sigma_{yy}}{x} - \dfrac{\nu}{E}\pdv[order=2]{\sigma_{xx}}{x} &= 2(1 + \nu)\pdv{\sigma_{xy}}{x,y},\nonumber\\
-        \Bigl(\pdv[order=2]{\sigma_{xx}}{x} + \pdv[order=2]{\sigma_{xx}}{y}\Bigr) + \Bigl(\pdv[order=2]{\sigma_{yy}}{x} + \pdv[order=2]{\sigma_{yy}}{y}\Bigr) - \nu\Bigl(\pdv[order=2]{\sigma_{xx}}{x} + \pdv[order=2]{\sigma_{yy}}{y}\Bigr) &= (1 + \nu)\pdv{\sigma_{xy}}{x,y} + \pdv[order=2]{\sigma_{xx}}{x} + \pdv[order=2]{\sigma_{yy}}{y},\nonumber\\
-        \lap{(\sigma_{xx} + \sigma_{yy})} &= (1 + \nu)\Bigl(2\pdv{\sigma_{xy}}{x,y} + \pdv[order=2]{\sigma_{xx}}{x} + \pdv[order=2]{\sigma_{yy}}{y}\Bigr).\label{eq:almost_michell-beltrami_tension}
-    \end{align}
-
-    Derivando las relaciones de equilibrio \cref{eq:equilibrium_equations} respecto a \(x\) y \(y\), respectivamente,
-
-    \begin{align*}
-        \pdv{\sigma_{xx}}{x,x} + \pdv{\sigma_{yx}}{y,x} + \pdv{B_{x}}{x} &= 0,\\
-        \pdv{\sigma_{xy}}{x,y} + \pdv{\sigma_{yy}}{y,y} + \pdv{B_{y}}{y} &= 0.
-    \end{align*}
-
-    Sumando y resolviendo para las fuerzas de volumen,
-
-    \begin{align}
-        2\pdv{\sigma_{xy}}{x,y} + \pdv[order=2]{\sigma_{xx}}{x} + \pdv[order=2]{\sigma_{yy}}{y} + \pdv{B_{x}}{x} + \pdv{B_{y}}{y} &= 0,\nonumber\\
-        2\pdv{\sigma_{xy}}{x,y} + \pdv[order=2]{\sigma_{xx}}{x} + \pdv[order=2]{\sigma_{yy}}{y} &= -\Biggl(\pdv{B_{x}}{x} + \pdv{B_{y}}{y}\Biggr).\label{eq:volumen_forces_tension}
-    \end{align}
-
-    Sustituyendo este resultado en \cref{eq:almost_michell-beltrami_tension}, tenemos que las ecuaciones de Michell-Beltrami para la formulación de tensión plana son
-
-    \begin{empheq}[box=\resultbox]{equation*}
-        \lap{( \sigma_{xx} + \sigma_{yy})} = -(1 + \nu)\Biggl(\pdv{B_{x}}{x} + \pdv{B_{y}}{y}\Biggr).
-    \end{empheq}
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[scale=0.75]{campodesplazamientos}
+        \caption{Campo de desplazamientos de una barra prismática bajo su propio peso.}
+        \label{fig:displacement-field}
+    \end{figure}
 \end{document}
