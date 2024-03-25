@@ -21,11 +21,10 @@ wz = (rho*g/(2*E))*(Z.^2 + nu*Y.^2 - L^2); % Componente w del campo de desplazam
 
 % Gráfica del campo de desplazamientos
 quiver(Y, Z, vy, wz, "Color", "b")
-title("Campo de desplazamientos para una barra prismática bajo su mismo peso")
+title(["Campo de desplazamientos para" "una barra prismática bajo su mismo peso"])
 xlabel('$y$', 'Interpreter','latex', 'FontSize', 14)
 ylabel('$z$', 'Interpreter', 'latex', 'FontSize', 14)
 xlim([min(Y(:)) max(Y(:))]);
 ylim([min(Z(:)) max(Z(:))]);
 
-set(titleHandle, 'HorizontalAlignment', 'center');
-saveas(gcf, "/home/marcoslm/Projects/University/2024-2/dmd/Tareas/T4/img/campodesplazamientos", 'pdf')
+saveas(gcf, "/home/marcoslm/Projects/University/2024-2/dmd/Tareas/T4/img/campodesplazamientos", 'png')
